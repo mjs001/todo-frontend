@@ -31,7 +31,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onToggle, onDelete }) => {
 					<h3 className="ml-4 font-bold">{task.title}</h3>
 				</div>
 				<button
-					onClick={() => onDelete(task.id!)}
+					onClick={(e) => onDelete(task.id!, e)}
 					className="text-red-500 bg-transparent border border-red-500 px-2 py-1 rounded hover:bg-red-500 hover:text-white"
 				>
 					Delete

@@ -28,7 +28,8 @@ const Home: React.FC = () => {
 		);
 	};
 
-	const deleteTask = async (id: number) => {
+	const deleteTask = async (id: number, e) => {
+		e.stopPropagation();
 		await fetch(`${base_url}/${id}`, {
 			method: "DELETE",
 		});
