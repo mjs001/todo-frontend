@@ -3,8 +3,9 @@
 }
 
 .createTask {
-  background-color: #1e6f9f;
+  background-color: #1E6F9F;
   top: 10.8rem;
+  border-radius: 8px;
 }
 
 .banner {
@@ -12,11 +13,11 @@
 }
 
 .blueText {
-  color: #4ea8de;
+  color: #4EA8DE;
 }
 
 .purpleText {
-  color: #5e60ce;
+  color: #8284FA;
 }
 
 .containerForBadges {

@@ -1,6 +1,6 @@
 import "../styles/app.css";
 import line from "../public/croppedLine.svg";
-import notepad from "../public/notepad.svg";
+import clipboard from "../public/Clipboard.svg";
 import Image from "next/image";
 
 const EmptyTasks = () => {
@@ -9,7 +9,7 @@ const EmptyTasks = () => {
 			<Image priority src={line} alt="curved line" />
 			<Image
 				priority
-				src={notepad}
+				src={clipboard}
 				alt="notepad graphic"
 				className="notepad pt-3 ml-3"
 			/>

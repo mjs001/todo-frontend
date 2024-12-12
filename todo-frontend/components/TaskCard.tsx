@@ -2,6 +2,9 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Task } from "@/types/task";
 import RoundCheckbox from "./RoundCheckbox";
+import "../styles/components.css";
+import Image from "next/image";
+import trash from "../public/trash.svg";
 
 interface TaskCardProps {
 	task: Task;
@@ -15,26 +18,36 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onToggle, onDelete }) => {
 	const handleEditTodo = () => {
 		router.push(`/form?id=${task.id}`);
 	};
-	console.log("inside taskcard", task);
 
 	return (
 		<div
 			className={`p-4 rounded mb-2 cursor-pointer w-[100%] taskCard`}
 			onClick={handleEditTodo}
 		>
-			<div className="flex justify-between items-center">
+			<div className="flex justify-between items-center checkmarkTextContainer w-[100%]">
 				<div
-					className="flex items-center justify-center"
+					className="flex justify-center checkmarkTextContainer"
 					onClick={(e) => e.stopPropagation()}
 				>
 					<RoundCheckbox task={task} onToggle={onToggle} />
-					<h3 className="ml-4 font-bold">{task.title}</h3>
+					<h3
+						className={`ml-4 taskText ${
+							task.completed ? "completed" : "notCompleted"
+						}`}
+						onClick={handleEditTodo}
+					>
+						{task.title}
+					</h3>
 				</div>
 				<button
 					onClick={(e) => onDelete(task.id!, e)}
-					className="text-red-500 bg-transparent border border-red-500 px-2 py-1 rounded hover:bg-red-500 hover:text-white"
+					className="relative deleteBtn"
 				>
-					Delete
+					<Image
+						src={trash}
+						alt="trash bin icon"
+						className="w-[24px] max-w-[24px]"
+					/>
 				</button>
 			</div>
 		</div>

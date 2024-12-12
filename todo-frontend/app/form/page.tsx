@@ -5,6 +5,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Task } from "@/types/task";
 import ColorPicker from "../../components/ColorPicker";
 import { base_url } from "../../utilities/url";
+import backArrow from "../../public/backArrow.svg";
+import Image from "next/image";
+import plus from "../../public/plus.svg";
+import checkmark from "../../public/checkmark.svg";
+import "../../styles/form.css";
 
 const FormPage: React.FC = () => {
 	const router = useRouter();
@@ -51,42 +56,50 @@ const FormPage: React.FC = () => {
 	return (
 		<main className="p-6">
 			<div onClick={handleBackBtn} className="cursor-pointer">
-				<svg
-					className="h-8 w-8"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					strokeWidth="2"
-					stroke="#FFFFFF"
-					fill="none"
-				>
-					<path stroke="none" d="M0 0h24v24H0z" />{" "}
-					<line x1="5" y1="12" x2="19" y2="12" />{" "}
-					<line x1="5" y1="12" x2="11" y2="18" />{" "}
-					<line x1="5" y1="12" x2="11" y2="6" />
-				</svg>
+				<Image priority src={backArrow} alt="back arrow" />
 			</div>
 
-			<form onSubmit={handleSubmit} className="mt-4">
-				<label className="block mb-2">
-					Title:
+			<form onSubmit={handleSubmit} className="mt-4 w-[736px]">
+				<label className="block pb-[12px]">
+					<p className="formLabels pb-2">Title</p>
 					<input
 						type="text"
 						value={task.title}
 						onChange={(e) => setTask({ ...task, title: e.target.value })}
-						className="border p-2 w-full"
+						className="p-2 w-[100%] textInput h-[52px]"
 						required
 					/>
 				</label>
-				<ColorPicker
-					selectedColor={task.color}
-					onSelectColor={(color) => setTask({ ...task, color })}
-				/>
+				<label className="block py-[12px]">
+					<p className="formLabels pb-2">Color</p>
+					<ColorPicker
+						selectedColor={task.color}
+						onSelectColor={(color) => setTask({ ...task, color })}
+						required
+					/>
+				</label>
 				<button
 					type="submit"
-					className="bg-blue-500 text-white px-4 py-2 rounded"
+					className="px-4 py-2 submitBtn w-[100%] h-[52px] font-bold"
 				>
-					{taskId ? "Edit Task" : "Create Task"}
+					{!task.title || !task.color ? (
+						<div className="flex items-center justify-center">
+							<p>Add Task</p>
+							<span className="pl-2">
+								<Image priority src={plus} alt="plus icon" />
+							</span>
+						</div>
+					) : (
+						<div className="flex items-center justify-center">
+							<p>Save</p>
+							<span className="pl-2">
+								<Image priority src={checkmark} alt="checkmark" />
+							</span>
+						</div>
+					)}
+					{/* <span className="pl-2">
+						<Image priority src={plus} alt="plus icon" />
+					</span> */}
 				</button>
 			</form>
 		</main>

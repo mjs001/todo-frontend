@@ -1,0 +1,26 @@
+.formLabels {
+  color: #4EA8DE;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.94px;
+  text-align: left;
+}
+
+.gapBtm {
+  padding-bottom: 12px;
+}
+
+
+.submitBtn {
+  border-radius: 8px;
+  background-color: #1E6F9F;
+  color: #F2F2F2;
+}
+
+.textInput {
+border-radius: 8px;
+border: 1px solid #333333;
+background-color: #262626;
+color: #F2F2F2;
+}

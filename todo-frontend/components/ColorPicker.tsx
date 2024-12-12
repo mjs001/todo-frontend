@@ -34,10 +34,12 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						className="hidden"
 					/>
 					<span
-						className={`w-8 h-8 inline-block rounded-full border-2`}
+						className="w-[52px] h-[52px] inline-block rounded-full colorPaletteBtn"
 						style={{
 							backgroundColor: color,
-							borderColor: selectedColor === color ? "black" : "transparent",
+							border: `2px solid ${
+								selectedColor === color ? "#FFFFFF" : "transparent"
+							}`,
 						}}
 					></span>
 				</label>
