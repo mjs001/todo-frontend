@@ -44,11 +44,29 @@ const FormPage: React.FC = () => {
 		router.push("/");
 	};
 
+	const handleBackBtn = () => {
+		router.push("/");
+	};
+
 	return (
 		<main className="p-6">
-			<h1 className="text-2xl font-bold">
-				{taskId ? "Edit Task" : "Create Task"}
-			</h1>
+			<div onClick={handleBackBtn} className="cursor-pointer">
+				<svg
+					className="h-8 w-8"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					strokeWidth="2"
+					stroke="#FFFFFF"
+					fill="none"
+				>
+					<path stroke="none" d="M0 0h24v24H0z" />{" "}
+					<line x1="5" y1="12" x2="19" y2="12" />{" "}
+					<line x1="5" y1="12" x2="11" y2="18" />{" "}
+					<line x1="5" y1="12" x2="11" y2="6" />
+				</svg>
+			</div>
+
 			<form onSubmit={handleSubmit} className="mt-4">
 				<label className="block mb-2">
 					Title:

@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Task } from "@/types/task";
+import RoundCheckbox from "./RoundCheckbox";
 
 interface TaskCardProps {
 	task: Task;
@@ -14,20 +15,19 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onToggle, onDelete }) => {
 	const handleEditTodo = () => {
 		router.push(`/form?id=${task.id}`);
 	};
+	console.log("inside taskcard", task);
+
 	return (
 		<div
-			className={`p-4 border rounded mb-2 bg-white cursor-pointer`}
+			className={`p-4 rounded mb-2 cursor-pointer w-[100%] taskCard`}
 			onClick={handleEditTodo}
 		>
 			<div className="flex justify-between items-center">
-				<div className="flex items-center" onClick={(e) => e.stopPropagation()}>
-					<input
-						type="checkbox"
-						checked={task.completed}
-						onChange={() => onToggle(task.id!, !task.completed)}
-						className="cursor-pointer w-5 h-5 rounded"
-						style={{ backgroundColor: task.color }}
-					/>
+				<div
+					className="flex items-center justify-center"
+					onClick={(e) => e.stopPropagation()}
+				>
+					<RoundCheckbox task={task} onToggle={onToggle} />
 					<h3 className="ml-4 font-bold">{task.title}</h3>
 				</div>
 				<button

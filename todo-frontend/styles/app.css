@@ -1,0 +1,36 @@
+.logo {
+  margin-left: 7.5rem;
+}
+
+.createTask {
+  background-color: #1e6f9f;
+  top: 10.8rem;
+}
+
+.banner {
+  background-color: #0D0D0D;
+}
+
+.blueText {
+  color: #4ea8de;
+}
+
+.purpleText {
+  color: #5e60ce;
+}
+
+.containerForBadges {
+  padding-top: 5.5em;
+}
+
+.notepad {
+  width: 55px;
+}
+
+.emptyTodoTopText {
+  color: #808080;
+}
+
+.emptyTodoBottomText{
+  color: #808080;
+}
