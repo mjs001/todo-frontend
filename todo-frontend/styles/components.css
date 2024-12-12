@@ -38,7 +38,6 @@
 }
 
 .round input[type="checkbox"]:checked + label {
-  /* background-color: #007AFF; */
   border-color: transparent;
 }
 

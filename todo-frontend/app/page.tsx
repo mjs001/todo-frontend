@@ -13,13 +13,15 @@ import EmptyTasks from "../components/EmptyTasks";
 
 const Home: React.FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
-
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const fetchTasks = async () => {
 			const response = await fetch(`${base_url}/`);
 			const data = await response.json();
 			setTasks(data);
+			setLoading(false);
 		};
+
 		fetchTasks();
 	}, []);
 
@@ -46,9 +48,9 @@ const Home: React.FC = () => {
 
 	return (
 		<main className="flex flex-col items-center justify-center container mx-auto">
-			<div className="flex flex-col lg:w-[736px]">
+			<div className="flex flex-col md:w-[736px] w-[98vw]">
 				<Link
-					className="createTask h-[52px] w-[736px] rounded-lg flex self-center justify-center z-10 absolute"
+					className="createTask h-[52px] md:w-[736px] w-[98%] rounded-lg flex self-center justify-center z-10 absolute"
 					href="/form"
 				>
 					<button className="font-bold flex items-center justify-center">
@@ -58,8 +60,8 @@ const Home: React.FC = () => {
 						</span>
 					</button>
 				</Link>
-				<div className="flex flex-row justify-between containerForBadges pb-5 w-[100%]">
-					<div className="flex flex-row items-center">
+				<div className="flex sm:flex-row flex-col sm:justify-between items-center justify-center sm:pt-[5.5em] pt-[3em] pb-5 w-[100%]">
+					<div className="flex flex-row items-center sm:pb-0 pb-2">
 						<p className="pr-2 font-bold text-md blueText">Tasks</p>
 						<span>
 							<CountBadge data={tasks.length} />
@@ -76,8 +78,13 @@ const Home: React.FC = () => {
 						</span>
 					</div>
 				</div>
+
 				{tasks.length === 0 ? (
-					<EmptyTasks />
+					loading ? (
+						<p className="loading">Loading...</p>
+					) : (
+						<EmptyTasks />
+					)
 				) : (
 					<div className="flex flex-col items-center justify-center w-[100%]">
 						{tasks.map((task) => (

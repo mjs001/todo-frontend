@@ -22,7 +22,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	onSelectColor,
 }) => {
 	return (
-		<div className="flex flex-wrap gap-2">
+		<div className="flex flex-wrap gap-4">
 			{colors.map((color) => (
 				<label key={color} className="cursor-pointer">
 					<input

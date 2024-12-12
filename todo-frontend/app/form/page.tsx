@@ -54,8 +54,8 @@ const FormPage: React.FC = () => {
 	};
 
 	return (
-		<main className="p-6 flex flex-col items-center justify-center container mx-auto">
-			<div className="pt-[48px]">
+		<main className="sm:p-6 p-0 flex flex-col items-center justify-center container mx-auto">
+			<div className="sm:pt-[48px] pt-[10px]">
 				<div
 					onClick={handleBackBtn}
 					className="cursor-pointer flex self-start w-[100%]"
@@ -63,9 +63,12 @@ const FormPage: React.FC = () => {
 					<Image priority src={backArrow} alt="back arrow" />
 				</div>
 
-				<form onSubmit={handleSubmit} className="mt-4 w-[736px] pt-[24px]">
+				<form
+					onSubmit={handleSubmit}
+					className="sm:mt-4 sm:pt-[24px] pt-[10px] md:w-[736px] w-[98vw]"
+				>
 					<label className="block pb-[12px]">
-						<p className="formLabels pb-2">Title</p>
+						<p className="formLabels font-bold pb-2">Title</p>
 						<input
 							type="text"
 							value={task.title}
@@ -75,7 +78,7 @@ const FormPage: React.FC = () => {
 						/>
 					</label>
 					<label className="block py-[12px]">
-						<p className="formLabels pb-2">Color</p>
+						<p className="formLabels font-bold pb-2">Color</p>
 						<ColorPicker
 							selectedColor={task.color}
 							onSelectColor={(color) => setTask({ ...task, color })}

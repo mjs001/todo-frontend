@@ -16,7 +16,7 @@ export default function RootLayout({
 						priority
 						src={logo}
 						alt="Todo App logo"
-						className="h-auto logo"
+						className="h-auto sm:w-[226px] w-[98%] max-w-[226px] sm:ml-[6rem]"
 					/>
 				</div>
 				{children}

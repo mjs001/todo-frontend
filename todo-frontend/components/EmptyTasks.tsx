@@ -11,7 +11,7 @@ const EmptyTasks = () => {
 				priority
 				src={clipboard}
 				alt="notepad graphic"
-				className="notepad pt-3 ml-3"
+				className="py-[15px]"
 			/>
 			<p className="emptyTodoTopText font-bold pb-4 pt-1 text-md">
 				You don't have any tasks registered yet.

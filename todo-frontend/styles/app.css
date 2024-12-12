@@ -1,11 +1,12 @@
-.logo {
-  margin-left: 7.5rem;
-}
-
 .createTask {
   background-color: #1E6F9F;
   top: 10.8rem;
   border-radius: 8px;
+}
+
+.loading {
+  margin: 0 auto;
+  color: #4EA8DE;
 }
 
 .banner {
@@ -22,10 +23,6 @@
 
 .containerForBadges {
   padding-top: 5.5em;
-}
-
-.notepad {
-  width: 55px;
 }
 
 .emptyTodoTopText {
