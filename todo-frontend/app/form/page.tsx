@@ -54,54 +54,56 @@ const FormPage: React.FC = () => {
 	};
 
 	return (
-		<main className="p-6">
-			<div onClick={handleBackBtn} className="cursor-pointer">
-				<Image priority src={backArrow} alt="back arrow" />
-			</div>
-
-			<form onSubmit={handleSubmit} className="mt-4 w-[736px]">
-				<label className="block pb-[12px]">
-					<p className="formLabels pb-2">Title</p>
-					<input
-						type="text"
-						value={task.title}
-						onChange={(e) => setTask({ ...task, title: e.target.value })}
-						className="p-2 w-[100%] textInput h-[52px]"
-						required
-					/>
-				</label>
-				<label className="block py-[12px]">
-					<p className="formLabels pb-2">Color</p>
-					<ColorPicker
-						selectedColor={task.color}
-						onSelectColor={(color) => setTask({ ...task, color })}
-						required
-					/>
-				</label>
-				<button
-					type="submit"
-					className="px-4 py-2 submitBtn w-[100%] h-[52px] font-bold"
+		<main className="p-6 flex flex-col items-center justify-center container mx-auto">
+			<div className="pt-[48px]">
+				<div
+					onClick={handleBackBtn}
+					className="cursor-pointer flex self-start w-[100%]"
 				>
-					{!task.title || !task.color ? (
-						<div className="flex items-center justify-center">
-							<p>Add Task</p>
-							<span className="pl-2">
-								<Image priority src={plus} alt="plus icon" />
-							</span>
-						</div>
-					) : (
-						<div className="flex items-center justify-center">
-							<p>Save</p>
-							<span className="pl-2">
-								<Image priority src={checkmark} alt="checkmark" />
-							</span>
-						</div>
-					)}
-					{/* <span className="pl-2">
-						<Image priority src={plus} alt="plus icon" />
-					</span> */}
-				</button>
-			</form>
+					<Image priority src={backArrow} alt="back arrow" />
+				</div>
+
+				<form onSubmit={handleSubmit} className="mt-4 w-[736px] pt-[24px]">
+					<label className="block pb-[12px]">
+						<p className="formLabels pb-2">Title</p>
+						<input
+							type="text"
+							value={task.title}
+							onChange={(e) => setTask({ ...task, title: e.target.value })}
+							className="p-2 w-[100%] textInput h-[52px]"
+							required
+						/>
+					</label>
+					<label className="block py-[12px]">
+						<p className="formLabels pb-2">Color</p>
+						<ColorPicker
+							selectedColor={task.color}
+							onSelectColor={(color) => setTask({ ...task, color })}
+							required
+						/>
+					</label>
+					<button
+						type="submit"
+						className="px-4 py-2 submitBtn w-[100%] h-[52px] font-bold mt-[24px]"
+					>
+						{!task.title || !task.color ? (
+							<div className="flex items-center justify-center">
+								<p>Add Task</p>
+								<span className="pl-2">
+									<Image priority src={plus} alt="plus icon" />
+								</span>
+							</div>
+						) : (
+							<div className="flex items-center justify-center">
+								<p>Save</p>
+								<span className="pl-2">
+									<Image priority src={checkmark} alt="checkmark" />
+								</span>
+							</div>
+						)}
+					</button>
+				</form>
+			</div>
 		</main>
 	);
 };

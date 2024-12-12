@@ -9,9 +9,13 @@ const RoundCheckbox = ({ task, onToggle }) => {
 				checked={task.completed}
 				onChange={() => onToggle(task.id!, !task.completed)}
 				className="cursor-pointer"
-				style={{ backgroundColor: task.color }}
 			/>
-			<label htmlFor={`checkbox-${task.id}`}></label>
+			<label
+				htmlFor={`checkbox-${task.id}`}
+				style={{
+					backgroundColor: `${task.completed ? task.color : "transparent"}`,
+				}}
+			></label>
 		</div>
 	);
 };
