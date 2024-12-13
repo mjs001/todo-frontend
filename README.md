@@ -1,6 +1,8 @@
 # todo-frontend
 
-## Steps for setting up this repo:
+[backend](https://github.com/mjs001/todo-backend)
+
+## Steps for setting up this repo
 
 1. First you will need to clone this repo. `git clone https://github.com/mjs001/todo-frontend.git`.
 2. Next `cd` into the directory.
