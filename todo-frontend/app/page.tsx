@@ -77,50 +77,28 @@ const Home: React.FC = () => {
 						</span>
 					</button>
 				</Link>
+				<div className="flex sm:flex-row flex-col sm:justify-between items-center justify-center sm:pt-[5.5em] pt-[3em] pb-5 w-[100%]">
+					<div className="flex flex-row items-center sm:pb-0 pb-2">
+						<p className="pr-2 font-bold text-md blueText">Tasks</p>
+						<span>
+							<CountBadge data={tasks.length} />
+						</span>
+					</div>
+					<div className="flex flex-row items-center">
+						<p className="pr-2 font-bold text-md purpleText">Completed</p>
+						<span>
+							<div className="countBadge w-auto h-[20px] text-center rounded-full py-2 px-2 text-sm font-bold flex justify-center items-center">
+								{completedCount > 0
+									? `${completedCount} of ${tasks.length}`
+									: completedCount}
+							</div>
+						</span>
+					</div>
+				</div>
 				{loading ? (
 					<p className="loading">Loading...</p>
 				) : error !== "" ? (
 					<p className="errorText text-center pt-[4rem]">{error}</p>
-				) : tasks.length === 0 ? (
-					<EmptyTasks />
-				) : (
-					<>
-						<div className="flex sm:flex-row flex-col sm:justify-between items-center justify-center sm:pt-[5.5em] pt-[3em] pb-5 w-[100%]">
-							<div className="flex flex-row items-center sm:pb-0 pb-2">
-								<p className="pr-2 font-bold text-md blueText">Tasks</p>
-								<span>
-									<CountBadge data={tasks.length} />
-								</span>
-							</div>
-							<div className="flex flex-row items-center">
-								<p className="pr-2 font-bold text-md purpleText">Completed</p>
-								<span>
-									<div className="countBadge w-auto h-[20px] text-center rounded-full py-2 px-2 text-sm font-bold flex justify-center items-center">
-										{completedCount > 0
-											? `${completedCount} of ${tasks.length}`
-											: completedCount}
-									</div>
-								</span>
-							</div>
-						</div>
-						<div className="flex flex-col items-center justify-center w-[100%]">
-							{tasks.map((task) => (
-								<TaskCard
-									key={task.id}
-									task={task}
-									onToggle={toggleTaskCompletion}
-									onDelete={deleteTask}
-								/>
-							))}
-						</div>
-					</>
-				)}
-				{/* {loading ? (
-					<p className="loading">Loading...</p>
-				) : error !== "" ? (
-					<p className="errorText text-center pt-5">
-						An error occurred. Please refresh the page. Error: {error}
-					</p>
 				) : tasks.length === 0 ? (
 					<EmptyTasks />
 				) : (
@@ -134,7 +112,7 @@ const Home: React.FC = () => {
 							/>
 						))}
 					</div>
-				)} */}
+				)}
 			</div>
 		</main>
 	);
