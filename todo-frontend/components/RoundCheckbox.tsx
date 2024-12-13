@@ -14,6 +14,7 @@ const RoundCheckbox = ({ task, onToggle }) => {
 				htmlFor={`checkbox-${task.id}`}
 				style={{
 					backgroundColor: `${task.completed ? task.color : "transparent"}`,
+					border: `2px solid ${task.color}`,
 				}}
 			></label>
 		</div>
