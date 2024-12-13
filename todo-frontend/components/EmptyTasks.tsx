@@ -13,10 +13,10 @@ const EmptyTasks = () => {
 				alt="notepad graphic"
 				className="py-[15px]"
 			/>
-			<p className="emptyTodoTopText font-bold pb-4 pt-1 text-md">
+			<p className="emptyTodoTopText font-bold pb-4 pt-1 text-md text-center">
 				You don't have any tasks registered yet.
 			</p>
-			<p className="emptyTodoBottomText text-md">
+			<p className="emptyTodoBottomText text-md text-center">
 				Create tasks and organize your to-do items.
 			</p>
 		</div>

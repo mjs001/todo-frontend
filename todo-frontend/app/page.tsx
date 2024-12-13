@@ -14,11 +14,20 @@ import EmptyTasks from "../components/EmptyTasks";
 const Home: React.FC = () => {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState("");
 	useEffect(() => {
 		const fetchTasks = async () => {
-			const response = await fetch(`${base_url}/`);
-			const data = await response.json();
-			setTasks(data);
+			try {
+				const response = await fetch(`${base_url}`);
+				const data = await response.json();
+				if (data.error) {
+					setError(data.error);
+				} else {
+					setTasks(data);
+				}
+			} catch (err) {
+				setError(err.message);
+			}
 			setLoading(false);
 		};
 
@@ -26,22 +35,30 @@ const Home: React.FC = () => {
 	}, []);
 
 	const toggleTaskCompletion = async (id: number, completed: boolean) => {
-		await fetch(`${base_url}/${id}`, {
+		const data = await fetch(`${base_url}/${id}`, {
 			method: "PUT",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ completed }),
 		});
-		setTasks((prev) =>
-			prev.map((task) => (task.id === id ? { ...task, completed } : task))
-		);
+		if (data.error) {
+			setError(data.error);
+		} else {
+			setTasks((prev) =>
+				prev.map((task) => (task.id === id ? { ...task, completed } : task))
+			);
+		}
 	};
 
 	const deleteTask = async (id: number, e) => {
 		e.stopPropagation();
-		await fetch(`${base_url}/${id}`, {
+		const data = await fetch(`${base_url}/${id}`, {
 			method: "DELETE",
 		});
-		setTasks((prev) => prev.filter((task) => task.id !== id));
+		if (data.error) {
+			setError(data.error);
+		} else {
+			setTasks((prev) => prev.filter((task) => task.id !== id));
+		}
 	};
 
 	const completedCount = tasks.filter((task) => task.completed).length;
@@ -60,31 +77,52 @@ const Home: React.FC = () => {
 						</span>
 					</button>
 				</Link>
-				<div className="flex sm:flex-row flex-col sm:justify-between items-center justify-center sm:pt-[5.5em] pt-[3em] pb-5 w-[100%]">
-					<div className="flex flex-row items-center sm:pb-0 pb-2">
-						<p className="pr-2 font-bold text-md blueText">Tasks</p>
-						<span>
-							<CountBadge data={tasks.length} />
-						</span>
-					</div>
-					<div className="flex flex-row items-center">
-						<p className="pr-2 font-bold text-md purpleText">Completed</p>
-						<span>
-							<div className="countBadge w-auto h-[20px] text-center rounded-full py-2 px-2 text-sm font-bold flex justify-center items-center">
-								{completedCount > 0
-									? `${completedCount} of ${tasks.length}`
-									: completedCount}
+				{loading ? (
+					<p className="loading">Loading...</p>
+				) : error !== "" ? (
+					<p className="errorText text-center pt-[4rem]">{error}</p>
+				) : tasks.length === 0 ? (
+					<EmptyTasks />
+				) : (
+					<>
+						<div className="flex sm:flex-row flex-col sm:justify-between items-center justify-center sm:pt-[5.5em] pt-[3em] pb-5 w-[100%]">
+							<div className="flex flex-row items-center sm:pb-0 pb-2">
+								<p className="pr-2 font-bold text-md blueText">Tasks</p>
+								<span>
+									<CountBadge data={tasks.length} />
+								</span>
 							</div>
-						</span>
-					</div>
-				</div>
-
-				{tasks.length === 0 ? (
-					loading ? (
-						<p className="loading">Loading...</p>
-					) : (
-						<EmptyTasks />
-					)
+							<div className="flex flex-row items-center">
+								<p className="pr-2 font-bold text-md purpleText">Completed</p>
+								<span>
+									<div className="countBadge w-auto h-[20px] text-center rounded-full py-2 px-2 text-sm font-bold flex justify-center items-center">
+										{completedCount > 0
+											? `${completedCount} of ${tasks.length}`
+											: completedCount}
+									</div>
+								</span>
+							</div>
+						</div>
+						<div className="flex flex-col items-center justify-center w-[100%]">
+							{tasks.map((task) => (
+								<TaskCard
+									key={task.id}
+									task={task}
+									onToggle={toggleTaskCompletion}
+									onDelete={deleteTask}
+								/>
+							))}
+						</div>
+					</>
+				)}
+				{/* {loading ? (
+					<p className="loading">Loading...</p>
+				) : error !== "" ? (
+					<p className="errorText text-center pt-5">
+						An error occurred. Please refresh the page. Error: {error}
+					</p>
+				) : tasks.length === 0 ? (
+					<EmptyTasks />
 				) : (
 					<div className="flex flex-col items-center justify-center w-[100%]">
 						{tasks.map((task) => (
@@ -96,7 +134,7 @@ const Home: React.FC = () => {
 							/>
 						))}
 					</div>
-				)}
+				)} */}
 			</div>
 		</main>
 	);
