@@ -106,7 +106,6 @@ const FormPage: React.FC = () => {
 									value={task.title}
 									onChange={(e) => setTask({ ...task, title: e.target.value })}
 									className="p-2 w-[100%] textInput h-[52px]"
-									placeholder="Ex. Brush your teeth"
 									autoFocus
 									required
 								/>
